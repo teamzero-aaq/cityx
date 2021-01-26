@@ -1,0 +1,123 @@
+<% include ../partials/header %>
+<div class="container" style="padding-top: 100px">
+  <header class="jumbotron">
+    <h1>Welcome to CityX!</h1>
+    <p>View our handpicked locations from all over Mumbai!</p>
+    <a class="btn btn-primary btn-large" href="/sights/new">Post?</a>
+  </header>
+
+  <div class="form-inline" style="margin-bottom: 0.5em">
+    <div class="form-group" style="width: 50%">
+      <input
+        id="input"
+        type="text"
+        name="searchbar"
+        placeholder="Search by City"
+        class="form-control"
+        style="margin-bottom: 12px"
+      /><button class="btn btn-primary" id="btn" style="margin-bottom: 12px">
+        search
+      </button>
+    </div>
+  </div>
+
+  <div class="row text-center" style="display: flex; flex-wrap: wrap" id="bod">
+    <% sights.forEach(function(sight){ %>
+    <div class="col-md-3 col-sm-6">
+      <div class="thumbnail" style="width: 100%">
+        <img src="<%=sight.image%>" style="height: 25vh; width: 100%" />
+        <div class="caption">
+          <h4><%= sight.name %></h4>
+          <p><%= sight.city.charAt(0).toUpperCase()+sight.city.slice(1)%></p>
+        </div>
+        <p>
+          <a href="/sights/<%=sight._id %>" class="btn btn-primary"
+            >More Info</a
+          >
+        </p>
+      </div>
+    </div>
+    <%});%>
+  </div>
+</div>
+
+<script>
+  $("#btn").click(function () {
+    var input = $("#input").val();
+    if (input != "") {
+      $.ajax({
+        method: "POST",
+        url: "/jiberrish",
+        data: { key: input.toLowerCase() },
+      }).done((response) => {
+        var bodyContent = response;
+        $("body").html(bodyContent);
+      });
+    }
+  });
+  // .match(/<body>(.*)<\/body>/)[1]
+
+  // .done(function( msg ) {
+  //     console.log("Lets see!");
+  //   });
+</script>
+
+<% include ../partials/footer %>
+
+
+<!-- <% include ../partials/header %>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<div class="container" style="padding-top:70px;">
+    <header class="jumbotron">
+        <h1> Welcome to Vastu!</h1>
+        <p> View our handpicked locations from all over Mumbai!</p>
+    <a class="btn btn-primary btn-large" href="/sights/new">Post?</a>
+    </header>
+
+    <div class="form-inline" style="margin-bottom: 0.5em;">
+        <div class="form-group" style="width:50%; height: 100%;"> 
+            <input id="input" type="text" name="searchbar" placeholder="Search by City" class="form-control" style="width:80%; margin-bottom:12px;"><button class="btn btn-primary" id="btn" style="margin-bottom:12px;">search</button>
+        </div>
+    </div>  
+
+    <div class="row text-center" style="display:flex; flex-wrap: wrap;" id="bod">
+        <% sights.forEach(function(sight){ %>
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail" style="width:100%;">
+                    <img src="<%=sight.image%>" style="height:25vh; width:100%;">
+                    <div class="caption">
+                        <h4><%= sight.name %></h4>
+                    </div>
+                    <p>
+                        <a href="/sights/<%=sight._id %>" class="btn btn-primary">More Info</a>
+                    </p>
+                </div>
+            </div>
+        <%});%>
+    </div>
+</div>
+
+
+<script>
+$("#btn").click(function(){
+    var input = $("#input").val();
+    if(input!=""){
+        console.log("Its there!");
+    $.ajax({
+    method: "POST",
+    url: "/jiberrish",
+    data: {"key":input.toLowerCase()}
+    })
+    .done(response => {
+        var bodyContent = response
+    $('body').html(bodyContent);
+    })
+    }else{
+        window.location.reload(true);
+    }
+});
+</script>
+
+<% include ../partials/footer %> -->
