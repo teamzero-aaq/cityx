@@ -33,6 +33,10 @@ router.post("/login",passport.authenticate("local",{
     failureRedirect:"/login"}),function(req,res){
 });
 
+router.get("/map", function (req, res) {
+  res.render("map");
+});
+
 router.get("/logout",function(req,res){
     req.logout();
     res.redirect("/");

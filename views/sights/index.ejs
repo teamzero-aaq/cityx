@@ -51,6 +51,7 @@
         data: { key: input.toLowerCase() },
       }).done((response) => {
         var bodyContent = response;
+        console.log(bodyContent);
         $("body").html(bodyContent);
       });
     }

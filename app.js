@@ -14,8 +14,8 @@ methodOverride  =require("method-override");  //This is to use the Put and Delet
  //models importing
 var Sight = require("./models/sights"),
     user = require("./models/users"),
-    //    contact     =require("./models/contact"),
-    //    comment     = require("./models/comment"),
+       contact     =require("./models/contact"),
+       comment     = require("./models/comment"),
     //Requiring routes
     sightsRoutes = require("./routes/sights"),//External referenced routed data needs to be required and used ,i.e., app.use
     // commentRoutes      = require("./routes/comments"),
